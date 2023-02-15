@@ -1,0 +1,38 @@
+@model pc1.Models.Registro;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form asp-controller="Registro" asp-action="Calcular">
+   <strong><label asp-for="Name" class="control-label" ></label></strong>
+        <input asp-for="Name" class="form-control" placeholder="Nombre Completo"/> 
+        </br>
+   <strong><label asp-for="nomCurso" class="control-label"></label></strong>
+     </br>
+     <label>Nota:Cada curso tiene 3 creditos</label>
+     </br>
+     <label>Recuerda:Cada credito cuesta S/100.00</label>
+     </br>
+     </br>
+@for (int i = 0; i < Model.CursoList.Count; i++)
+{
+        <div>
+        @Html.HiddenFor(model => Model.CursoList[i].Nommbre) 
+
+        @Html.CheckBoxFor(model => Model.CursoList[i].active, new { id = "curso" + Model.CursoList[i].ID })
+        
+        @Html.LabelFor(model => Model.CursoList[i].active, Model.CursoList[i].Nommbre)
+        </div>
+}
+</br>
+ <button type="submit" class="btn btn-primary">Enviar</button> 
+   
+</form>
+</body>
+</html>
